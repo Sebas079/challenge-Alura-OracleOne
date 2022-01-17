@@ -1,0 +1,117 @@
+<canvas width="600" height="400">
+
+</canvas>
+
+
+
+<script>
+    let pantalla = document.querySelector("canvas");
+    let pincel = pantalla.getContext("2d");
+    let puedoDibujar = false;
+
+    pincel.fillStyle = "lightgrey";
+    pincel.fillRect(0, 0, 600, 400);
+
+
+    pincel.font = " 20px Calibri";
+    pincel.fillStyle = "black";
+    pincel.fillText("Selecciona un color...", 200, 20);
+
+
+    let xRojo = 0;
+    let xAzul = 50;
+    let xVerde = 100;
+    let yCuadrados = 0;
+    let tamanhoCuadrados = 50;
+    let colorActual = "blue";
+
+
+
+    function paletaColores(x, y, color, tamanho) {
+        pincel.fillStyle = color;
+        pincel.fillRect(x, y, tamanho, tamanho)
+        pincel.strokeRect(x, y, tamanho, tamanho);
+        pincel.fill;
+
+    }
+
+
+
+
+    function dibujarCirculo(x, y, colorActual) {
+        if (puedoDibujar) {
+
+
+            pincel.fillStyle = colorActual;
+            pincel.beginPath();
+            pincel.arc(x, y, 5, 0, 2 * Math.PI);
+            pincel.fill();
+
+
+        }
+    };
+    function disenharArea(xCoord, yCoord) {
+        if ((xCoord >= 0 && xCoord < (3 * tamanhoCuadrados + 5)) &&
+            (yCoord >= 0 && yCoord < (tamanhoCuadrados + 5))) {
+            return false
+
+        } else {
+            return true;
+        }
+    };
+    function selectColor(evento) {
+        let x = evento.pageX - pantalla.offsetLeft;
+        let y = evento.pageY - pantalla.offsetTop;
+
+        if (y > yCuadrados && y < (yCuadrados + tamanhoCuadrados)) {
+
+            if (x > xRojo && x < (xRojo + tamanhoCuadrados)) {
+
+                colorActual = "red";
+                console.log(colorActual);
+
+            } else if (x > xVerde && x < (xVerde + tamanhoCuadrados)) {
+
+                colorActual = "green";
+
+            } else if (x > xAzul && x < (xAzul + tamanhoCuadrados)) {
+
+                colorActual = "blue";
+
+            }
+
+
+        }
+
+
+
+    }
+    function capturaMovMouse(evento) {
+        let x = evento.pageX - pantalla.offsetLeft;
+        let y = evento.pageY - pantalla.offsetTop;
+        if (disenharArea(x, y)) {
+            dibujarCirculo(x, y, colorActual);
+        }
+    }
+
+
+    paletaColores(xRojo, yCuadrados, "red", tamanhoCuadrados);
+    paletaColores(xAzul, yCuadrados, "blue", tamanhoCuadrados);
+    paletaColores(xVerde, yCuadrados, "green", tamanhoCuadrados);
+    // pantalla.onmousemove = dibujarCirculo;
+
+    function habilitarDibujar() {
+        puedoDibujar = true;
+    }
+    function deshabilitarDibujar() {
+        puedoDibujar = false;
+    }
+
+
+    pantalla.onmousedown = habilitarDibujar;
+    pantalla.onmouseup = deshabilitarDibujar;
+    pantalla.onmousemove = capturaMovMouse;
+    pantalla.onclick = selectColor;
+
+
+</script>

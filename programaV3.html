@@ -1,0 +1,46 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+    var pantalla = document.querySelector("canvas");
+    var pincel = pantalla.getContext("2d");
+    var colores = ["blue", "red", "green"];
+    var indiceActual = 0;
+
+    pincel.fillStyle = "orange";
+    pincel.fillRect(0, 0, 600, 400);
+
+    function click(event) {
+        var x = event.pageX - pantalla.offsetLeft;
+        var y = event.pageY - pantalla.offsetTop;
+        alert(x + " , " + y);
+    }
+
+    function dibujarCirculo(event) {
+        var x = event.pageX - pantalla.offsetLeft;
+        var y = event.pageY - pantalla.offsetTop;
+
+        pincel.fillStyle = colores[indiceActual];
+        pincel.beginPath();
+        pincel.arc(x, y, 15, 0, 2 * 3.14);
+        pincel.fill();
+
+        console.log(x + " , " + y);
+    }
+    pantalla.onclick = dibujarCirculo;
+    function cambiarColor(event) {
+        
+        console.log(indiceActual)
+        alert("Cambiaste el color ahora es ");
+        indiceActual ++;
+        if(indiceActual >= colores.length){
+            indiceActual = 0;
+        };  
+
+
+
+    }
+
+    pantalla.onclick = dibujarCirculo;
+    pantalla.oncontextmenu = cambiarColor;
+
+</script>

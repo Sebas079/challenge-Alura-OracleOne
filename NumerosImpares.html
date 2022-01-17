@@ -1,0 +1,22 @@
+<meta charset="UTF-8">
+<h1>NUMERO PARES EN 1 Y 100</h1>
+<script>
+    function saltarLinea() {
+        document.write("<br>");
+    }
+
+    function imprimir(frase) {
+        document.write(frase);
+        saltarLinea();
+    }
+ 
+    var i = 0;
+    while(i <= 100) {
+        if(i % 2 == 0){
+            imprimir(i);
+        }
+        i++;
+    }
+    imprimir("FIN");
+        
+</script>

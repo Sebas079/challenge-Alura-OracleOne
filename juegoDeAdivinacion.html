@@ -1,0 +1,54 @@
+<meta charset="UTF-8">
+
+<h1>Juego de Adivinacion</h1>
+
+<script>
+    // la funciones se nombran de forma explicita utilizando un verbo
+
+    function saltarLinea() {
+
+        document.write("<br>");
+        document.write("<br>");
+        document.write("<br>");
+    }
+    function imprimir(frase) {
+        document.write(frase);
+        saltarLinea();
+    }
+
+
+    function sortearNumero(n) {
+        return Math.round(Math.random() * n);
+
+    };
+   
+    var numeroPensado = sortearNumero(numeroLanzado);
+    var intento = 3;
+    var contador = 1;
+    while (contador <= intento) {
+         var numeroLanzado = parseInt(prompt("Ingrese un numero entre 0 y 10, tienes 3 intentos..."));
+        
+        if (numeroPensado == numeroLanzado) {
+            alert("Buenisimo acertaste!!!...en el intento" + contador +" el numero pensado era" + numeroPensado);
+            break;
+        } else {
+             alert("Intentalo de nuevo!!! " );
+        };
+        contador++;
+        
+
+    };
+    
+        if (numeroPensado == numeroLanzado) {
+            alert("Buenisimo acertaste!!!...en el intento" + contador + " el numero pensado era" + numeroPensado);
+        
+        } else {
+            alert("Intentalo de nuevo!!!el numero era... " + numeroLanzado);
+        };
+
+
+
+
+
+
+</script>
